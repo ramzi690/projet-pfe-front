@@ -1,0 +1,67 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5 class="card-header text-center" style="background-color: rgb(101, 146, 251); color: white;">Ajouter un nouveau formulaire</h5>
+            <form (ngSubmit)="onSubmit()" [formGroup]="technicienform" class="my-form">
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="start">Date de début</label>
+                            <p-calendar [showIcon]="true" inputId="start" formControlName="start" placeholder="Choisir une date" dateFormat="yy/mm/dd"></p-calendar>
+                            <small class="text-danger" *ngIf="technicienform.get('start')?.invalid && (technicienform.get('start')?.dirty || technicienform.get('start')?.touched)">La date de début est obligatoire</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="end">Date de fin</label>
+                            <p-calendar [showIcon]="true" inputId="end" formControlName="end" placeholder="Choisir une date" dateFormat="yy/mm/dd"></p-calendar>
+                            <small class="text-danger" *ngIf="technicienform.get('end')?.invalid && (technicienform.get('end')?.dirty || technicienform.get('end')?.touched)">La date de fin est obligatoire</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="photo">Photo</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="photo" formControlName="photo" (change)="uploadImage($event)">
+                                <label class="custom-file-label" for="photo">Choisir un fichier...</label>
+                            </div>
+                            <small class="text-danger" *ngIf="technicienform.get('photo')?.invalid && (technicienform.get('photo')?.dirty || technicienform.get('photo')?.touched)">La photo est obligatoire</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="review">Review</label>
+                            <textarea rows="5" cols="30" id="review" formControlName="review" class="form-control" pInputTextarea></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="plan">Planification</label>
+                            <p-calendar [showIcon]="true" dateFormat="yy/mm/dd" inputId="plan" formControlName="plan" placeholder="Choisir une date"></p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="client_id">ID du client</label>
+                            <input type="text" class="form-control" id="client_id" formControlName="client_id">
+                            <small class="text-danger" *ngIf="technicienform.get('client_id')?.invalid && (technicienform.get('client_id')?.dirty || technicienform.get('client_id')?.touched)">L'ID du client est obligatoire</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <p-toast position="bottom-right" ></p-toast>
+
+</div>

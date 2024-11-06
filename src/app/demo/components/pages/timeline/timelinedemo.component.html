@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="flex justify-content-between">
+        <h2>Formulaires des Techniciens</h2>
+    </div>
+    
+    <p-table [value]="techniciens" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Photo</th>
+                <th>Avis</th>
+                <th>Rendez-vous</th>
+                <th>ID du Client</th>
+                <th>ID du Technicien</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-technicien >
+            <tr *ngIf="technicien.plan !== '0'">
+                <td>{{ technicien.start }}</td>
+                <td>{{ technicien.end }}</td>
+                <td>
+                    <img [src]="getPhotoUrl(technicien.photo)" alt="Photo du Technicien" width="100" height="100">
+                </td>
+                <td>{{ technicien.review }}</td>
+                <td>{{ technicien.plan }}</td>
+                <td>{{ technicien.client_id }}</td>
+                <td>{{ technicien.technicien_id }}</td>
+                <td><button pButton icon="pi pi-angle-double-right" class="p-button-rounded p-button-warning mr-2"  (click)="showModel(technicien)"></button></td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    <p-toast position="bottom-right"></p-toast>
+</div>
+
+<p-dialog header="Affecter un technicien" [(visible)]="displaymodel" [modal]="true"  [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+    <form [formGroup]="techform" class="client-form" class="input">
+
+        <div class="field">
+            <label class="block" for="plan">Rendez-vous</label>
+            <p-calendar [showIcon]="true" inputId="plan" formControlName="plan" placeholder="Choisir une date" appendTo="body"></p-calendar>        </div>
+
+        </form>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="affecter()"  label="Affecter" styleClass="p-button-text" [disabled]=techform.invalid></p-button> 
+    </ng-template>
+</p-dialog>
+ 
+<p-toast position="bottom-right"></p-toast>

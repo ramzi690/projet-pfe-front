@@ -1,0 +1,19 @@
+.status-cell {
+    display: flex;
+}
+
+.completed {
+    background-color: rgb(94, 255, 94);
+    color: white;
+}
+
+.in-progress {
+    background-color: rgb(255, 176, 30);
+    color: white;
+}
+
+.not-started {
+    background-color: rgb(255, 70, 70);
+    color: white;
+}
+

@@ -1,0 +1,38 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="https://th.bing.com/th/id/OIP.40UcChI9sKRZJWZ9f7Ng5QAAAA?rs=1&pid=ImgDetMain" alt="logo" style="height: 70px;">
+    </a>
+
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+       
+        <button *ngIf="!loggedIn"class="p-link layout-topbar-button" [routerLink]="'/auth/login'">
+            <i class="pi pi-sign-in"></i>
+            <span>Connexion</span>
+        </button>
+        <button *ngIf="!loggedIn" class="p-link layout-topbar-button" [routerLink]="'/auth/signup'">
+            <i class="pi pi-book"></i>
+            <span>Inscription</span>
+        </button>
+        <button *ngIf="loggedIn" class="p-link layout-topbar-button" (click)="logout($event)"  [routerLink]="'/'">
+            <i class="pi pi-sign-out"></i>
+            <span>Déconnexion</span>
+        </button>
+        <button *ngIf="loggedIn && admin"  class="p-link layout-topbar-button" [routerLink]="'/pages/crud'">
+            <i class="pi pi pi-user"></i>
+            <span>Techniciens</span>
+        </button>
+        <button *ngIf="loggedIn && admin" class="p-link layout-topbar-button" [routerLink]="'/uikit/table'">
+            <i class="pi pi-box"></i>
+            <span>Commandes</span>
+        </button>
+       
+    </div>
+</div>

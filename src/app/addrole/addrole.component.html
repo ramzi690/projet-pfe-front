@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="flex justify-content-between">
+    <h2>Utilisateurs</h2>
+    </div>
+    
+    
+    <p-table [value]="users" [paginator]="true"  [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+             
+                <th></th>
+    
+                
+    
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-users>
+            <tr>
+                <td>{{users.name}}</td>
+                <td>{{users.email}} </td>
+                <td>{{users.role}}</td>
+            
+                <td><button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showeditModel(users)"></button>
+            </tr>
+        </ng-template>
+    </p-table >
+    
+    
+    <p-dialog header="Ajouter un rôle" [(visible)]="displayaddeditmodel" [modal]="true"  [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" (onHide)="closeModel()" >
+        <form [formGroup]="technicienform" class="technicien-form">
+         <div class="field">
+             <label class="block" for="name">Nom</label>
+             <input type="text" pInputText id="name" formControlName="name" style="width: 100%;">
+             <small class="p-error block" *ngIf="technicienform.get('name')?.invalid && (technicienform.get('name')?.dirty || technicienform.get('name')?.touched)">Le nom est requis</small>
+         </div>
+         <div class="field">
+             <label class="block" for="email">Email</label>
+             <input type="email" pInputText id="email" formControlName="email"  style="width: 100%;">
+             <small class="p-error block" *ngIf="technicienform.get('email')?.invalid && (technicienform.get('email')?.dirty || technicienform.get('email')?.touched)">L'email est requis</small>
+         </div>
+         
+         <div class="field">
+            <label class="block" for="role">Rôle</label>
+            <p-dropdown [options]="roles" formControlName="role" [style]="{'width':'100%'}" [showClear]="true"  placeholder="Sélectionner un rôle" [filter]="true" filterBy="role" appendTo="body"></p-dropdown>
+        
+        </div>
+         
+     
+         </form>
+             <ng-template pTemplate="footer">
+             <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text" ></p-button>
+             <p-button icon="pi pi-check" (click)="addRole()" label="Ajouter" styleClass="p-button-text" [disabled]="technicienform.invalid" ></p-button>
+             </ng-template>
+     </p-dialog>
+     
+     
+    <p-confirmDialog header="Supprimer" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    
+    <p-toast position="bottom-right" ></p-toast>
+    </div>

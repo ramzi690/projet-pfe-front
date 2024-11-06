@@ -1,0 +1,194 @@
+<div class="surface-0 flex justify-content-center">
+    <div id="home" class="landing-wrapper overflow-hidden">
+        <div class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
+            <a class="flex align-items-center" href="#">
+                <img src="https://th.bing.com/th/id/OIP.40UcChI9sKRZJWZ9f7Ng5QAAAA?rs=1&pid=ImgDetMain" alt="Logo ASM" height="50" class="mr-0 lg:mr-2">
+            </a>
+            <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden" leaveToClass="hidden" [hideOnOutsideClick]="true">
+                <i class="pi pi-bars text-4xl"></i>
+            </a>
+            <div class="align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2" style="top:85%">
+                <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
+                    <li>
+                        <a (click)="router.navigate(['/landing'], {fragment: 'home'})" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
+                           <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="router.navigate(['/landing'], {fragment: 'features'})" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
+                            <span>Fonctionnalités</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="router.navigate(['/landing'], {fragment: 'highlights'})" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
+                            <span>Points Forts</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <div class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
+                    <button pButton pRipple label="Connexion" [routerLink]="'/auth/login'" class="p-button-text p-button-rounded border-none font-light line-height-2 text-blue-500"></button>
+                    <button pButton pRipple label="S'inscrire" [routerLink]="'/auth/signup'" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-white"></button>
+                </div>
+            </div>
+        </div>
+    
+        <div id="hero" class="grid py-4 px-4 lg:px-8 relative">
+            <div class="mx-4 md:mx-8 mt-0 md:mt-4">
+                <h1 class="text-6xl font-bold text-gray-900 line-height-2">
+                    <span class="font-light block">ASM</span>
+                    Fournissant des Solutions de Point de Vente Exceptionnelles
+                </h1>
+
+              <p class="font-normal text-2xl line-height-3 md:mt-3 text-gray-700">Amélioration des opérations commerciales avec des systèmes et logiciels de PDV innovants et conviviaux.</p>
+                <button pButton pRipple type="button" label="Commencer" [routerLink]="'/auth/login'" class="p-button-rounded text-xl border-none mt-3 bg-blue-500 font-normal line-height-3 px-3 text-white"></button>
+            </div>
+            <img src="https://www.asm-tunisie.com/wp-content/uploads/2017/02/Offshoring.png" alt=""  style="right:10%; max-width: 300px; margin-top: 100px;">
+        </div>
+        
+        <div id="features" class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8">
+            <div class="grid justify-content-center">
+                <div class="col-12 text-center mt-8 mb-4">
+                    <h2 class="text-900 font-normal mb-2">Fonctionnalités Exceptionnelles</h2>
+                    <span class="text-600 text-2xl">Transformation de la Gestion de Votre Entreprise</span>
+                </div>
+    
+                <div class="col-12 md:col-12 lg:col-4 p-0 lg:pr-5 lg:pb-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-search text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Recherche Avancée</h3>
+                            <p class="text-500">Trouvez facilement ce que vous cherchez grâce à notre fonctionnalité de recherche avancée.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-users text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Gestion des Utilisateurs</h3>
+                            <p class="text-500">Gérez vos utilisateurs de manière efficace et sécurisée avec notre système de gestion des utilisateurs.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 md:col-12 lg:col-4 p-0 lg:px-5 lg:pb-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-check-circle text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Validation Instantanée</h3>
+                            <p class="text-500">Recevez une validation instantanée pour les transactions, assurant précision et fiabilité.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-lock text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Sécurité Renforcée</h3>
+                            <p class="text-500">Protégez vos données et opérations commerciales avec nos mesures de sécurité robustes.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 md:col-12 lg:col-4 p-0 lg:pl-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-palette text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Personnalisation</h3>
+                            <p class="text-500">Adaptez nos solutions à vos besoins et préférences commerciaux uniques.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-share-alt text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Partage Facile</h3>
+                            <p class="text-500">Partagez facilement des données et des informations dans toute votre organisation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="highlights" class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8">
+            <div class="grid justify-content-center">
+                <div class="col-12 text-center mt-8 mb-4">
+                    <h2 class="text-900 font-normal mb-2">Points Forts</h2>
+                    <span class="text-600 text-2xl">Découvrez les Avantages des Solutions ASM</span>
+                </div>
+    
+                <div class="col-12 md:col-6 lg:col-3 p-0 lg:pr-5 lg:pb-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-user text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Convivialité</h3>
+                            <p class="text-500">Profitez d'une expérience intuitive et conviviale.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-briefcase text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Parfait pour les Entreprises</h3>
+                            <p class="text-500">Solutions sur mesure pour répondre aux besoins des entreprises de toutes tailles.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 md:col-6 lg:col-3 p-0 lg:px-5 lg:pb-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-heart text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Support Dédié</h3>
+                            <p class="text-500">Recevez un support dédié de notre équipe d'experts.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-star text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Évaluations Exceptionnelles</h3>
+                            <p class="text-500">Recevez régulièrement d'excellentes évaluations et critiques de nos clients satisfaits.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 md:col-6 lg:col-3 p-0 lg:pl-5">
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-clock text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Mises à Jour Régulières</h3>
+                            <p class="text-500">Bénéficiez de mises à jour régulières et d'améliorations de nos solutions.</p>
+                        </div>
+                    </div>
+                    <div class="flex align-items-center mb-5">
+                        <i class="pi pi-globe text-5xl text-900"></i>
+                        <div class="ml-3">
+                            <h3 class="text-xl text-900 mb-1">Disponible Partout</h3>
+                            <p class="text-500">Accédez à nos solutions à tout moment, partout et depuis n'importe quel appareil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+       
+    
+        <footer class="py-6 px-4 lg:px-8 mx-0 lg:mx-8 text-center text-gray-500">
+            <div class="grid justify-content-center">
+                <div class="col-12 md:col-6 lg:col-4">
+                    <div class="mb-6">
+                        <a class="mr-2" href="https://fr-fr.facebook.com/allsoftmultimedia/">
+                            <i class="pi pi-facebook text-3xl"></i>
+                        </a>
+                        <a class="mr-2" href="https://twitter.com/i/flow/login?redirect_after_login=%2FAllSoftMM">
+                            <i class="pi pi-twitter text-3xl"></i>
+                        </a>
+                        <a class="mr-2" href="https://www.linkedin.com/in/allsoftmultimedia/">
+                            <i class="pi pi-linkedin text-3xl"></i>
+                        </a>
+                    </div>
+                    
+                    
+                    <div>
+                        <span>© 2024 Tous droits réservés | ASM</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

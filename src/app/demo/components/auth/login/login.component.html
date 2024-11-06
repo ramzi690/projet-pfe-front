@@ -1,0 +1,34 @@
+<div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
+        <div class="col-12 mt-5 xl:mt-0 text-center">
+            <img src="https://th.bing.com/th/id/OIP.40UcChI9sKRZJWZ9f7Ng5QAAAA?rs=1&pid=ImgDetMain" alt="Logo Sakai" class="mb-5" style="width:150px; height:150px;">                
+        </div>
+        <div class="col-12 xl:col-6" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
+                <div class="text-center mb-5">
+                    <span class="text-600 font-medium">Connectez-vous pour continuer</span>
+                </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginform" >
+                <div class="alert alert-danger" [hidden]="!error">{{error}}</div>
+                <div class="w-full md:w-10 mx-auto">
+                    <label for="email" class="block text-900 text-xl font-medium mb-2">Adresse email</label>
+                    <input id="email" name="email" type="email" formControlName="email"  placeholder="Adresse email" pInputText class="w-full mb-3" style="padding:1rem;" required>
+
+                    <label for="password" class="block text-900 font-medium text-xl mb-2">Mot de passe</label>
+                    <!-- Increase the size of the password input -->
+                    <p-password id="password" name="password" formControlName="password"  placeholder="Mot de passe" [inputStyle]="{ 'width': '100%' }" styleClass="w-full mb-5" [toggleMask]="true" required></p-password>
+
+                    <div class="flex align-items-center justify-content-between mb-5">
+                        
+                        <a [routerLink]="'/auth/requestpassword'" class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Mot de passe oublié ?</a>
+                    </div>
+                    <button type="submit" pButton pRipple label="Se connecter" class="w-full p-3 text-xl mb-2" [disabled]="loginform.invalid"></button>
+                    <!-- Add space between the buttons -->
+                    <div style="height: 10px;"></div>
+                    <button [routerLink]="'/auth/signup'" pButton pRipple label="S'inscrire"  class="w-full p-3 text-xl mb-2"></button>                
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

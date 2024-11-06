@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="flex justify-content-between">
+    <h2>Liste des rendez-vous</h2>
+    </div>
+    <p-table [value]="rendezvous" [paginator]="true"  [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>Raison</th>
+                <th>Identifiant de client </th>
+                <th>Identifiant de Technicien </th>
+            </tr>
+        </ng-template> 
+        <ng-template pTemplate="body" let-rendezvous>
+            <tr>
+                <td>{{rendezvous.plan}}</td>
+                <td>{{rendezvous.raison}} </td>
+                <td>{{rendezvous.client_id}}</td>
+                <td>{{rendezvous.technicien_id }}</td>
+             
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">Aucune tâche trouvée.</td>
+            </tr>
+        </ng-template>
+    </p-table >
+    
+    

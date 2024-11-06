@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="flex justify-content-between">
+        <h2>Techniciens</h2>
+        <div class="button-group">
+            <button pButton type="button" label="Télécharger PDF" icon="pi pi-file-pdf" style="margin-right: 5px;" (click)="pdflistclient()"></button>
+            <button pButton type="button" label="Télécharger Excel" icon="pi pi-file-excel" (click)="downloadExcel()"></button>
+            <p-button icon="pi pi-plus" label="Ajouter" (click)="showAddModel()" style="margin-left: 250px;"></p-button>
+        </div>
+    </div>
+
+    <p-table [value]="techniciens" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>CIN</th>
+                <th>Place</th>
+                <th>Spécialité</th>
+                <th></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-technicien>
+            <tr>
+                <td>{{technicien.name}}</td>
+                <td>{{technicien.email}}</td>
+                <td>{{technicien.tel}}</td>
+                <td>{{technicien.cin}}</td>
+                <td>{{technicien.place}}</td>
+                <td>{{technicien.specialite}}</td>
+                <td>
+                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showeditModel(technicien)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2" (click)="deletetech(technicien)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-dialog header="{{ Model }} technicien" [(visible)]="displayaddeditmodel" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" (onHide)="closeModel()">
+        <form [formGroup]="technicienform" class="technicien-form">
+            <div class="field">
+                <label class="block" for="name">Nom</label>
+                <input type="text" pInputText id="name" formControlName="name" style="width: 100%;">
+                <small class="p-error block" *ngIf="technicienform.get('name')?.invalid && (technicienform.get('name')?.dirty || technicienform.get('name')?.touched)">Le nom est requis</small>
+            </div>
+            <div class="field">
+                <label class="block" for="email">Email</label>
+                <input type="email" pInputText id="email" formControlName="email" style="width: 100%;">
+                <small class="p-error block" *ngIf="technicienform.get('email')?.invalid && (technicienform.get('email')?.dirty || technicienform.get('email')?.touched)">L'email est requis et doit être au format email (ex. nom@domaine.com)</small>
+            </div>
+            <div class="field">
+                <label class="block" for="tel">Téléphone</label>
+                <input type="text" pInputText id="tel" formControlName="tel" style="width: 100%;">
+                <small class="p-error block" *ngIf="technicienform.get('tel')?.invalid && (technicienform.get('tel')?.dirty || technicienform.get('tel')?.touched)">Le téléphone est requis</small>
+            </div>
+            <div class="field">
+                <label class="block" for="cin">CIN</label>
+                <input type="text" pInputText id="cin" formControlName="cin" style="width: 100%;">
+                <small class="p-error block" *ngIf="technicienform.get('cin')?.invalid && (technicienform.get('cin')?.dirty || technicienform.get('cin')?.touched)">Le CIN est requis et doit être composé de 8 chiffres</small>
+            </div>
+            <div class="field">
+                <label class="block" for="specialite">Spécialité</label>
+                <p-dropdown [options]="specialites" formControlName="specialite" [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
+            </div>
+            <div class="field">
+                <label class="block" for="place">Place</label>
+                <p-dropdown [options]="places" formControlName="place" [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-dropdown>
+            </div>
+        </form>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text"></p-button>
+            <p-button icon="pi pi-check" (click)="addedittechnicien()" label="{{ Model }}" styleClass="p-button-text" [disabled]="technicienform.invalid"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <p-confirmDialog header="Supprimer" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    <p-toast position="bottom-right"></p-toast>
+</div>

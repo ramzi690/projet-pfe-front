@@ -1,0 +1,119 @@
+<p-table [value]="clients" dataKey="id" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+        <div class="flex table-header"></div>
+        <div class="button-group">
+            <button pButton type="button" label="Télécharger PDF" icon="pi pi-file-pdf" class="b" (click)="pdflistclient()"></button>
+            <button pButton type="button" label="Télécharger Excel" icon="pi pi-file-excel" (click)="downloadExcel()" class="b" ></button>
+          </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 5rem"></th>
+            <th>Nom et Prénom</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th>Commande N°</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client let-expanded="expanded">
+        <tr>
+            <td>
+                <button type="button" pButton pRipple [pRowToggler]="client" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td style="min-width: 12rem;">{{ client.name }}</td>
+            <td style="min-width: 10rem;">{{ client.email }}</td>
+            <td style="min-width: 10rem;">{{ client.place }}</td>
+            <td style="min-width: 10rem;">{{ client.commande_id }}</td>
+            <td><button pButton icon="pi pi-angle-double-right" class="p-button-rounded p-button-warning mr-2" (click)="showModel(client)"></button></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-client>
+        <tr>
+            <td colspan="8">
+                <div class="p-3">
+                    <p-table [value]="client.commandes" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Identifiant Article</th>
+                                <th>Nom de l'article</th>
+                                <th>Type de l'article</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-commande>
+                            <tr *ngFor="let commandearticle of commande.commandearticle">
+                                <td>{{ commandearticle.article_id }}</td>
+                                <td>{{ commandearticle.articles.name }}</td>
+                                <td>{{ commandearticle.articles.type[0].ref }}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="3">Il n'y a aucun article pour cette commande.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Affecter un technicien" [(visible)]="displaymodel" [modal]="true"  [style]="{width: '50vw'}" [draggable]="false" [resizable]="false"  >
+    <form [formGroup]="clientform" class="client-form" class="input">
+
+        <div class="field">
+            <label class="block" for="name">Nom</label>
+            <input type="text" pInputText id="name" formControlName="name" class="input" readonly>
+        </div>
+        <div class="field">
+            <label class="block" for="name">Email</label>
+            <input type="text" pInputText id="email" formControlName="email" readonly class="input" readonly>
+        </div>
+        <div class="field">
+            <label class="block" for="name">Position</label>
+            <input type="text" pInputText id="place" formControlName="place" readonly class="input" readonly>
+        </div>
+        <div class="field">
+            <label class="block" for="commande_id">Référence de commande</label>
+            <input type="text" pInputText id="commande_id" formControlName="commande_id" readonly class="input" readonly>
+        </div>
+      
+       
+        <div class="field">
+            <label class="block" for="place">Technicien</label>
+            <p-dropdown [options]="techniciens" formControlName="tech" [style]="{'width':'100%'}" [showClear]="true" optionLabel="name" placeholder="Choisir un technicien" [filter]="true" filterBy="name" appendTo="body"></p-dropdown>
+        
+        </div>
+        
+    </form>
+
+
+    <form [formGroup]="techform" class="client-form">
+
+        
+        <div class="field">
+            <label class="block" for="email">Email du technicien</label>
+            <input type="text" pInputText id="email" formControlName="email" readonly class="input" readonly>
+        </div>
+        <div class="field">
+            <label class="block" for="tel">Numéro du technicien</label>
+            <input type="text" pInputText id="tel" formControlName="tel" readonly class="input" readonly>
+        </div>
+
+        
+    </form>
+
+
+
+
+
+
+         <ng-template pTemplate="footer">
+            <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text"></p-button>
+
+         <p-button icon="pi pi-check" (click)="affecter()" (click)="affecter2()"  label="Affecter" styleClass="p-button-text" [disabled]=clientform.invalid></p-button> 
+        </ng-template>
+ </p-dialog>
+ 
+<p-toast position="bottom-right"></p-toast>

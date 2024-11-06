@@ -1,0 +1,166 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Menu des tâches</h5>
+			<p-button icon="pi pi-plus" label="Ajouter" style="margin-left: auto;" (click)="showAddModel()"></p-button>
+			<p-table #dt1 [value]="taches" dataKey="id" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" responsiveLayout="scroll">
+				
+				<ng-template pTemplate="header">
+					<tr>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								ID Client
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Nom
+							</div>
+						</th>
+						<th style="min-width: 14rem">
+							<div class="flex justify-content-between align-items-center">
+								Email
+								
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Lieu
+								
+							</div>
+						</th>
+						<th style="min-width: 10rem">
+							<div class="flex justify-content-between align-items-center">
+								Début
+								
+							</div>
+						</th>
+						<th style="min-width: 10rem">
+							<div class="flex justify-content-between align-items-center">
+								Fin
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Statut
+								
+							</div>
+						</th>
+					
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								Validé
+							</div>
+						</th>
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								
+							</div>
+						</th>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-customer>
+					<tr>
+						<td>
+							{{customer.client.id}}
+						</td>
+						<td>
+							{{customer.client.name}}
+						</td>
+						
+						<td>
+							{{customer.client.email }}
+						</td>
+						<td>
+							{{customer.client.place}}
+						</td>
+						<td>
+							{{customer.start}}
+						</td>
+						<td>
+							{{customer.end}}
+						</td>
+						<td [ngClass]="{
+							'completed': calculateStatus(customer.start, customer.end) === 'completed',
+							'in-progress': calculateStatus(customer.start, customer.end) === 'en cours',
+							'not-started': calculateStatus(customer.start, customer.end) === 'non commencé'
+						}" class=" status-cell">
+							{{ calculateStatus(customer.start, customer.end) }}
+						</td>
+						
+						
+						
+						<td class="text-center">
+                            <i class="pi" [ngClass]="{'pi-check-circle true-icon text-green-500': verified(customer.verif), 'pi-times-circle false-icon text-pink-500': !verified(customer.verif)}"></i>
+                        </td>
+						<td><button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showeditModel(customer)"></button>
+							<button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deletetech(customer)"></button>
+							<button pButton icon="pi pi-angle-double-right" class="p-button-rounded p-button-warning mr-2" (click)="showModel(customer)" ></button>
+
+						</td> 
+						
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="8">Aucune tâche trouvée.</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="loadingbody">
+					<tr>
+						<td colspan="8">Chargement des données des tâches. Veuillez patienter.</td>
+					</tr>
+				</ng-template>
+    		</p-table>
+		</div>
+		<p-dialog header="{{ Model }} tâches " [(visible)]="displayaddeditmodel" [modal]="true"  [style]="{width: '50vw'}" [draggable]="true" [resizable]="true" (onHide)="closeModel()">
+			<form [formGroup]="tacheform" class="technicien-form">
+			 <div class="field">
+				 <label class="block" for="client_id">ID Client</label>
+				 <input type="text" pInputText id="client_id" formControlName="client_id" style="width: 100%;">
+				 <small class="p-error block" *ngIf="tacheform.get('client_id')?.invalid && (tacheform.get('client_id')?.dirty || tacheform.get('client_id')?.touched)">ID Client requis</small>
+			 </div>
+			 <div class="field">
+				 <label class="block" for="start">Début</label>
+				 <p-calendar id="start" formControlName="start" [style]="{'width':'100%'}" [showClear]="true" placeholder="start" appendTo="body"></p-calendar>			 </div>
+			 <div class="field">
+				 <label class="block" for="end">Fin</label>
+				 <p-calendar id="end" formControlName="end" [style]="{'width':'100%'}" [showClear]="true" placeholder="end" appendTo="body"></p-calendar>			 </div>
+
+			 <div class="field">
+				<label class="block" for="verif">Validé</label>
+				<p-dropdown [options]="verif" formControlName="verif" [style]="{'width':'100%'}" [showClear]="true"  appendTo="body"></p-dropdown>
+			
+			</div>
+			 
+		 
+			 </form>
+				 <ng-template pTemplate="footer">
+				 <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text"></p-button>
+				 <p-button icon="pi pi-check" (click)="addedittechnicien()" label="{{ Model }}" styleClass="p-button-text"></p-button>
+				 </ng-template>
+		 </p-dialog>
+		 <p-dialog header=" Rendez-vous " [(visible)]="displaymodel" [modal]="true"  [style]="{width: '50vw'}" [draggable]="true" [resizable]="true" (onHide)="closeModel()">
+			<form [formGroup]="rendezvous" class="technicien-form">
+			 
+			 <div class="field">
+				 <label class="block" for="start">plan</label>
+				 <p-calendar id="plan" formControlName="plan" [style]="{'width':'100%'}" [showClear]="true" appendTo="body"></p-calendar>			 </div>
+			
+			 
+				 <div class="field">
+					<label class="block" for="raison">raison</label>
+					<input type="text" pInputText id="raison" formControlName="raison" style="width: 100%;">
+					<small class="p-error block" *ngIf="tacheform.get('raison')?.invalid && (tacheform.get('raison')?.dirty || tacheform.get('raison')?.touched)">raison requis</small>
+				</div>
+			 </form>
+				 <ng-template pTemplate="footer">
+				 <p-button icon="pi pi-times" (click)="closeModel()" label="Annuler" styleClass="p-button-text"></p-button>
+				 <p-button icon="pi pi-check" (click)="addrendezvous()" label="Ajouter" styleClass="p-button-text"></p-button>
+				 </ng-template>
+		 </p-dialog>
+		 
+		 <p-confirmDialog header="Supprimer" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+		 <p-toast position="bottom-right"></p-toast>
+	</div>
